@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="PeopleFlow.API/PeopleFlow.API.csproj" />
+  <Project Path="PeopleFlow.Application/PeopleFlow.Application.csproj" />
+  <Project Path="PeopleFlow.Desktop/PeopleFlow.Desktop.csproj" />
+  <Project Path="PeopleFlow.Domain/PeopleFlow.Domain.csproj" />
+  <Project Path="PeopleFlow.Infrastructure/PeopleFlow.Infrastructure.csproj" />
+  <Project Path="PeopleFlow.Tests/PeopleFlow.Tests.csproj" />
+</Solution>

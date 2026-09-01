@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>PeopleFlow</AssemblyName>
+    <RootNamespace>PeopleFlow.Desktop</RootNamespace>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <SatelliteResourceLanguages>pt-BR;en</SatelliteResourceLanguages>
+    <ApplicationIcon>..\..\assets\peopleflow.ico</ApplicationIcon>
+    <ValidateExecutableReferencesMatchSelfContained>false</ValidateExecutableReferencesMatchSelfContained>
+    <NoWarn>$(NoWarn);MSB3277</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PeopleFlow.API\PeopleFlow.API.csproj" />
+    <ProjectReference Include="..\PeopleFlow.Application\PeopleFlow.Application.csproj" />
+    <ProjectReference Include="..\PeopleFlow.Infrastructure\PeopleFlow.Infrastructure.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" />
+  </ItemGroup>
+  <Target Name="TrimPublishedExtras" AfterTargets="Publish">
+    <ItemGroup>
+      <PublishedExtras Include="$(PublishDir)*.pdb" Exclude="$(PublishDir)PeopleFlow*.pdb" />
+      <PublishedExtras Include="$(PublishDir)PeopleFlow.API.exe;$(PublishDir)PeopleFlow.API.runtimeconfig.json;$(PublishDir)PeopleFlow.API.staticwebassets.endpoints.json;$(PublishDir)appsettings.Development.json;$(PublishDir)*.xml" />
+    </ItemGroup>
+    <Delete Files="@(PublishedExtras)" />
+  </Target>
+</Project>

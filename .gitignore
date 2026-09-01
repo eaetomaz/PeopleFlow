@@ -1,0 +1,14 @@
+bin/
+obj/
+.vs/
+node_modules/
+dist/
+*.db
+*.db-shm
+*.db-wal
+App_Data/
+*.user
+TestResults/
+.tools/
+release/
+frontend/*.tsbuildinfo

@@ -1,0 +1,446 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+:root {
+  --app-bg: #f4f8f8;
+  --app-bg-tinted: #ecf3f3;
+  --app-surface: #ffffff;
+  --app-surface-2: #f1f6f6;
+  --app-surface-3: #e4eded;
+  --app-line: #dfe8e8;
+  --app-line-2: #ccdada;
+  --app-text: #0b1a1c;
+  --app-text-2: #43585a;
+  --app-text-3: #75898b;
+  --app-overlay: rgba(6, 18, 20, 0.45);
+  --app-glass: rgba(255, 255, 255, 0.78);
+  --app-shadow-color: 10 30 32;
+  --app-grid: rgba(11, 26, 28, 0.05);
+  --app-tolerado: #c9d4d4;
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --app-bg: #050d0e;
+  --app-bg-tinted: #081416;
+  --app-surface: #0b1a1c;
+  --app-surface-2: #102326;
+  --app-surface-3: #162d31;
+  --app-line: #17302f;
+  --app-line-2: #22423f;
+  --app-text: #eaf4f3;
+  --app-text-2: #a1b7b5;
+  --app-text-3: #6a8482;
+  --app-overlay: rgba(1, 5, 6, 0.7);
+  --app-glass: rgba(7, 18, 20, 0.72);
+  --app-shadow-color: 0 0 0;
+  --app-grid: rgba(255, 255, 255, 0.045);
+  --app-tolerado: #3a5351;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--app-bg);
+  --color-bg-tinted: var(--app-bg-tinted);
+  --color-surface: var(--app-surface);
+  --color-surface-2: var(--app-surface-2);
+  --color-surface-3: var(--app-surface-3);
+  --color-line: var(--app-line);
+  --color-line-2: var(--app-line-2);
+  --color-fg: var(--app-text);
+  --color-fg-2: var(--app-text-2);
+  --color-fg-3: var(--app-text-3);
+  --color-glass: var(--app-glass);
+  --color-tolerado: var(--app-tolerado);
+}
+
+@theme {
+  --font-sans: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Manrope Variable', 'Manrope', 'Inter Variable', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'Cascadia Code', Consolas, monospace;
+
+  --color-ink-950: #020707;
+  --color-ink-900: #061112;
+  --color-ink-800: #0b1a1c;
+  --color-ink-700: #162d31;
+  --color-ink-600: #22423f;
+
+  --color-brand-50: #effdfa;
+  --color-brand-100: #cdfaf1;
+  --color-brand-200: #9bf3e2;
+  --color-brand-300: #5ee6d0;
+  --color-brand-400: #2dd4bf;
+  --color-brand-500: #0d9488;
+  --color-brand-600: #0f766e;
+  --color-brand-700: #115e59;
+  --color-emerald-glow: #10b981;
+  --color-cyan-glow: #22d3ee;
+
+  --color-ok: #12a87a;
+  --color-warn: #e89400;
+  --color-danger: #e5484d;
+  --color-info: #2f80ed;
+  --color-night: #6366f1;
+  --color-extra: #10b981;
+
+  --radius-xl: 14px;
+  --radius-2xl: 18px;
+  --radius-3xl: 24px;
+
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --animate-drift: drift 18s ease-in-out infinite;
+  --animate-float: float-y 6s ease-in-out infinite;
+  --animate-shine: shine 5s var(--ease-out-soft) 1.5s infinite;
+  --animate-pulse-ring: pulse-ring 2s var(--ease-out-soft) infinite;
+  --animate-pop: pop 0.5s var(--ease-spring) both;
+  --animate-fade-up: fade-up 0.6s var(--ease-out-soft) both;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+
+  @keyframes drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    33% {
+      transform: translate3d(-4%, 6%, 0) scale(1.06);
+    }
+    66% {
+      transform: translate3d(5%, -3%, 0) scale(0.96);
+    }
+  }
+
+  @keyframes float-y {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes shine {
+    0% {
+      left: -60%;
+    }
+    30%,
+    100% {
+      left: 130%;
+    }
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      box-shadow: 0 0 0 0 color-mix(in oklab, currentColor 45%, transparent);
+    }
+    100% {
+      box-shadow: 0 0 0 10px transparent;
+    }
+  }
+
+  @keyframes pop {
+    0% {
+      opacity: 0;
+      transform: scale(0.6);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes shimmer {
+    from {
+      background-position: -200% 0;
+    }
+    to {
+      background-position: 200% 0;
+    }
+  }
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--app-line);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    min-width: 320px;
+    background: var(--app-bg);
+    color: var(--app-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-brand-500) 28%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+  }
+
+  button,
+  [role='button'] {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  input[type='number']::-webkit-inner-spin-button {
+    opacity: 0.4;
+  }
+
+  input[type='date']::-webkit-calendar-picker-indicator,
+  input[type='time']::-webkit-calendar-picker-indicator,
+  input[type='datetime-local']::-webkit-calendar-picker-indicator {
+    opacity: 0.55;
+    cursor: pointer;
+  }
+
+  [data-theme='dark'] input[type='date']::-webkit-calendar-picker-indicator,
+  [data-theme='dark'] input[type='time']::-webkit-calendar-picker-indicator,
+  [data-theme='dark'] input[type='datetime-local']::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--app-line-2) transparent;
+  }
+}
+
+@utility text-gradient {
+  background: linear-gradient(110deg, #0d9488 0%, #10b981 45%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-brand-gradient {
+  background: linear-gradient(120deg, #0f766e 0%, #0d9488 55%, #10a37f 100%);
+}
+
+@utility bg-glow-gradient {
+  background: linear-gradient(120deg, #0d9488 0%, #10b981 50%, #22d3ee 100%);
+}
+
+@utility shadow-soft {
+  box-shadow:
+    0 1px 2px rgb(var(--app-shadow-color) / 0.05),
+    0 1px 3px rgb(var(--app-shadow-color) / 0.07);
+}
+
+@utility shadow-card {
+  box-shadow:
+    0 12px 32px -14px rgb(var(--app-shadow-color) / 0.22),
+    0 2px 6px rgb(var(--app-shadow-color) / 0.05);
+}
+
+@utility shadow-float {
+  box-shadow:
+    0 40px 80px -30px rgb(var(--app-shadow-color) / 0.45),
+    0 12px 24px -12px rgb(var(--app-shadow-color) / 0.18);
+}
+
+@utility shadow-brand {
+  box-shadow: 0 10px 24px -12px rgba(13, 148, 136, 0.75);
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(var(--app-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--app-grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@utility glass {
+  background: var(--app-glass);
+  -webkit-backdrop-filter: saturate(1.6) blur(14px);
+  backdrop-filter: saturate(1.6) blur(14px);
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@utility bg-stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    color-mix(in oklab, var(--app-text-3) 35%, transparent) 0 3px,
+    transparent 3px 7px
+  );
+}
+
+@layer components {
+  .tone {
+    --tone-soft: color-mix(in oklab, var(--tone) 12%, transparent);
+    --tone-line: color-mix(in oklab, var(--tone) 28%, transparent);
+    --tone-ink: color-mix(in oklab, var(--tone) 78%, var(--app-text));
+  }
+
+  .btn-shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-shine::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -60%;
+    width: 40%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.38), transparent);
+    transform: skewX(-20deg);
+    animation: var(--animate-shine);
+    pointer-events: none;
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg, var(--app-surface-2) 25%, var(--app-surface-3) 50%, var(--app-surface-2) 75%);
+    background-size: 200% 100%;
+    animation: var(--animate-shimmer);
+  }
+
+  .reveal {
+    opacity: 0;
+    transition:
+      opacity 0.8s var(--ease-out-soft),
+      transform 0.8s var(--ease-out-soft);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal-up {
+    transform: translateY(28px);
+  }
+
+  .reveal-left {
+    transform: translateX(-36px);
+  }
+
+  .reveal-right {
+    transform: translateX(36px);
+  }
+
+  .reveal-scale {
+    transform: translateY(18px) scale(0.95);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .field-input {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid var(--app-line-2);
+    background: var(--app-surface);
+    padding: 10px 14px;
+    font-size: 0.94rem;
+    color: var(--app-text);
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s,
+      background-color 0.2s;
+  }
+
+  .field-input::placeholder {
+    color: var(--app-text-3);
+  }
+
+  .field-input:hover {
+    border-color: color-mix(in oklab, var(--color-brand-500) 35%, var(--app-line-2));
+  }
+
+  .field-input:focus {
+    outline: none;
+    border-color: var(--color-brand-500);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-brand-500) 16%, transparent);
+  }
+
+  .field-input[aria-invalid='true'] {
+    border-color: var(--color-danger);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-danger) 12%, transparent);
+  }
+
+  .field-input:disabled,
+  .field-input:read-only:not(select) {
+    background: var(--app-surface-2);
+  }
+
+  .field-input:disabled {
+    opacity: 0.7;
+  }
+
+  .field-sm {
+    padding: 6px 10px;
+    font-size: 0.86rem;
+    border-radius: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
